@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CrazyDemonPOSSIBLERESOURCE.wav-db0ebd900696dd85c3722ac8cce8605d.sample"
+
+[deps]
+
+source_file="res://Enemies/CrazyDemon/CrazyDemonPOSSIBLERESOURCE.wav"
+dest_files=[ "res://.import/CrazyDemonPOSSIBLERESOURCE.wav-db0ebd900696dd85c3722ac8cce8605d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

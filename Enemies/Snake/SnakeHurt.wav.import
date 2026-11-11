@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SnakeHurt.wav-12d561ef19c4ecc86c51971c8ef224d4.sample"
+
+[deps]
+
+source_file="res://Enemies/Snake/SnakeHurt.wav"
+dest_files=[ "res://.import/SnakeHurt.wav-12d561ef19c4ecc86c51971c8ef224d4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

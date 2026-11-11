@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Effects/BloodAndGore/Blood.tres" type="Material" id=1]
+[ext_resource path="res://Effects/BloodAndGore/3__blood-and-gore.wav" type="AudioStream" id=2]
+[ext_resource path="res://Effects/BloodAndGore/Blood4.png" type="Texture" id=3]
+[ext_resource path="res://Effects/BloodAndGore/BloodSplash.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 30
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Blood" type="Particles2D"]
+modulate = Color( 0.776471, 0.0509804, 0.0509804, 1 )
+material = SubResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+amount = 15
+speed_scale = 1.1
+explosiveness = 1.0
+randomness = 1.0
+process_material = ExtResource( 1 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 10.0
+attenuation = 0.0563282

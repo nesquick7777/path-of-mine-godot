@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SnakeReady.wav-6e0dd24c88078bd3f24c0a4f825d92af.sample"
+
+[deps]
+
+source_file="res://Enemies/Snake/SnakeReady.wav"
+dest_files=[ "res://.import/SnakeReady.wav-6e0dd24c88078bd3f24c0a4f825d92af.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

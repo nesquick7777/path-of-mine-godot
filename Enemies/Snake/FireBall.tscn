@@ -1,0 +1,134 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Overlap/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Snake/FireBall.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/Snake/Fireball.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Snake/FireballImpact.wav" type="AudioStream" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 322, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 368, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 414, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 460, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 506, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 552, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 46, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 92, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 138, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 184, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 230, 0, 46, 46 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 276, 0, 46, 46 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "Impact",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 0.0494106
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 8.84194
+
+[sub_resource type="CircleShape2D" id=17]
+radius = 0.0398361
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 5.0
+
+[node name="FireBall" type="KinematicBody2D"]
+collision_layer = 512
+collision_mask = 21
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0429592, -0.0338211 )
+frames = SubResource( 14 )
+animation = "Animate"
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource( 15 )
+disabled = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -6.4488, 1.48818 )
+scale = Vector2( 1.41669, 1.24803 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10370
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 16 )
+
+[node name="ObjectChecker" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectChecker"]
+shape = SubResource( 17 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+collision_mask = 20
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 18 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="ObjectChecker" to="." method="_on_ObjectChecker_body_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+
+[editable path="Hitbox"]

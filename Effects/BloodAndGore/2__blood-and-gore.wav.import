@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/2__blood-and-gore.wav-bb86b443a8d511754ea3785ad80b3469.sample"
+
+[deps]
+
+source_file="res://Effects/BloodAndGore/2__blood-and-gore.wav"
+dest_files=[ "res://.import/2__blood-and-gore.wav-bb86b443a8d511754ea3785ad80b3469.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

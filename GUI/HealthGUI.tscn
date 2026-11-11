@@ -1,0 +1,266 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://GUI/HealthGUI.gd" type="Script" id=1]
+[ext_resource path="res://GUI/HeartSprites/Sprite-Heart3.png" type="Texture" id=2]
+[ext_resource path="res://GUI/HeartSprites/Sprite-Heart1.png" type="Texture" id=3]
+[ext_resource path="res://GUI/HeartSprites/HealthBarFilling.png" type="Texture" id=4]
+[ext_resource path="res://GUI/HeartSprites/Sprite-HealthBar.png" type="Texture" id=5]
+[ext_resource path="res://Effects/ShadowAndLightSprites/light.png" type="Texture" id=7]
+[ext_resource path="res://Music/FightMusic2.wav" type="AudioStream" id=8]
+[ext_resource path="res://Music/FightMusic1.wav" type="AudioStream" id=9]
+[ext_resource path="res://Items/Coin/Coin.png" type="Texture" id=10]
+[ext_resource path="res://Obelisk/Obelisk.png" type="Texture" id=11]
+[ext_resource path="res://GUI/Font/new_dynamicfont.tres" type="DynamicFont" id=12]
+[ext_resource path="res://GUI/GUI.png" type="Texture" id=13]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 10 )
+region = Rect2( 8, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 10 )
+region = Rect2( 16, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 10 )
+region = Rect2( 24, 0, 8, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 8.0
+} ]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 200, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 11 )
+region = Rect2( 400, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 11 )
+region = Rect2( 600, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 11 )
+region = Rect2( 800, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 11 )
+region = Rect2( 1000, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 11 )
+region = Rect2( 1200, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 11 )
+region = Rect2( 1400, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 11 )
+region = Rect2( 1600, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 11 )
+region = Rect2( 1800, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 11 )
+region = Rect2( 2000, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 11 )
+region = Rect2( 2200, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 11 )
+region = Rect2( 2400, 0, 200, 400 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 10.0
+} ]
+
+[sub_resource type="TileSet" id=20]
+0/name = "GUI.png 0"
+0/texture = ExtResource( 13 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 32, 48, 48 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="HearthUI" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ObeliskHealth" type="Sprite" parent="."]
+light_mask = 2
+position = Vector2( 59.4999, 11 )
+scale = Vector2( 3.36719, 1.75 )
+texture = ExtResource( 5 )
+
+[node name="ObeliskHP" type="TextureRect" parent="ObeliskHealth"]
+self_modulate = Color( 1, 0, 0, 1 )
+margin_left = -12.9188
+margin_top = -1.71429
+margin_right = 13.0812
+margin_bottom = 0.285714
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHP" type="Control" parent="."]
+margin_left = -2.0
+margin_top = -4.0
+margin_right = 38.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartUIEmpty" type="TextureRect" parent="PlayerHP"]
+light_mask = 2
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 62.0
+margin_bottom = 30.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartUIFull" type="TextureRect" parent="PlayerHP"]
+light_mask = 2
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 62.0
+margin_bottom = 30.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light2D" type="Light2D" parent="."]
+light_mask = 2
+position = Vector2( 155.162, 7.9128 )
+scale = Vector2( 4.13729, 0.356445 )
+texture = ExtResource( 7 )
+texture_scale = 0.4
+energy = 0.7
+range_item_cull_mask = 2
+shadow_item_cull_mask = 2
+
+[node name="DayCount" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 72.0
+margin_right = 162.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 12 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wave1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Wave2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="NumberOfCoins" type="Label" parent="."]
+light_mask = 2
+margin_left = 294.198
+margin_top = 162.137
+margin_right = 334.198
+margin_bottom = 176.137
+custom_fonts/font = ExtResource( 12 )
+text = ":1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="NumberOfCoins"]
+light_mask = 2
+position = Vector2( -5.78116, -0.52556 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 5 )
+animation = "Animate"
+frame = 3
+playing = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+position = Vector2( 6.00253, 12.5017 )
+scale = Vector2( 0.1, 0.1 )
+frames = SubResource( 19 )
+animation = "Animate"
+frame = 7
+playing = true
+
+[node name="Sprite" type="TileMap" parent="."]
+position = Vector2( 12, 168 )
+scale = Vector2( 0.7, 0.7 )
+tile_set = SubResource( 20 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( -196610, 0, 0 )
+
+[node name="Item" type="Sprite" parent="."]
+position = Vector2( 17.3181, 162.137 )
+
+[node name="CoolDown" type="Label" parent="."]
+margin_left = 5.62486
+margin_top = 155.152
+margin_right = 29.6249
+margin_bottom = 169.152
+custom_fonts/font = ExtResource( 12 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CoolDown"]
+margin_left = 19.4958
+margin_top = 10.2802
+margin_right = 59.4958
+margin_bottom = 24.2802
+custom_fonts/font = ExtResource( 12 )
+text = "Q"
+__meta__ = {
+"_edit_use_anchors_": false
+}

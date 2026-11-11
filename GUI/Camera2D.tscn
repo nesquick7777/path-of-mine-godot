@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Camera2D
+
+onready var topLeft = $LockPositions/TopLeft
+onready var bottomRight = $LockPositions/BottomRight
+
+
+func _ready():
+	limit_top = topLeft.position.y
+	limit_left = topLeft.position.x
+	limit_bottom = bottomRight.position.y
+	limit_right = bottomRight.position.x
+	
+
+"
+
+[node name="Camera2D" type="Camera2D"]
+current = true
+limit_left = -200
+limit_top = -164
+limit_right = 520
+limit_bottom = 354
+script = SubResource( 1 )
+
+[node name="LockPositions" type="Node" parent="."]
+
+[node name="TopLeft" type="Position2D" parent="LockPositions"]
+position = Vector2( -160, -90 )
+
+[node name="BottomRight" type="Position2D" parent="LockPositions"]
+position = Vector2( 160, 90 )

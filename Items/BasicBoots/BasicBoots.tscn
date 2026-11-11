@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Items/BasicBoots/BasicBoots.gd" type="Script" id=1]
+[ext_resource path="res://Effects/ShadowAndLightSprites/SmallShadow.png" type="Texture" id=2]
+[ext_resource path="res://Items/ItemSpawnPickUp.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Items/Coin/Coin.png" type="Texture" id=4]
+[ext_resource path="res://Items/BasicBoots/BasicBoots.png" type="Texture" id=5]
+[ext_resource path="res://GUI/Font/new_dynamicfont.tres" type="DynamicFont" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.45254
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.60051
+
+[sub_resource type="Animation" id=3]
+length = 0.8
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="BasicBoots" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 3.8147e-06, 2.47487 )
+scale = Vector2( 1.95244, 1 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -2.74451 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2.47487 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 20.0
+
+[node name="Coin" type="Sprite" parent="."]
+position = Vector2( 8.52155, 2.08424 )
+texture = ExtResource( 4 )
+hframes = 12
+
+[node name="RichTextLabel" type="Label" parent="Coin"]
+margin_left = -14.5076
+margin_top = -3.0534
+margin_right = 8.4924
+margin_bottom = 17.9466
+custom_fonts/font = ExtResource( 6 )
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 1.19055 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Animate = SubResource( 3 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

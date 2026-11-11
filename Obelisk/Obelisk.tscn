@@ -1,0 +1,137 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Obelisk/Obelisk.gd" type="Script" id=1]
+[ext_resource path="res://Effects/ShadowAndLightSprites/light.png" type="Texture" id=2]
+[ext_resource path="res://Effects/ShadowAndLightSprites/MediumShadow.png" type="Texture" id=3]
+[ext_resource path="res://Obelisk/Obelisk.png" type="Texture" id=4]
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Obelisk/ObeliskStats.tscn" type="PackedScene" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 200, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 400, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 600, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 800, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 1000, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 1200, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 1400, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 1600, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 1800, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 2000, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 2200, 0, 200, 400 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 2400, 0, 200, 400 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 0.640495
+height = 14.19
+
+[sub_resource type="CapsuleShape2D" id=16]
+radius = 8.77166
+height = 17.7292
+
+[sub_resource type="CapsuleShape2D" id=17]
+radius = 8.10135
+height = 16.027
+
+[node name="Obelisk" type="StaticBody2D" groups=[
+"Obelisk",
+]]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.280617, -37.8831 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 14 )
+animation = "Animate"
+frame = 1
+playing = true
+
+[node name="Shadow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.126279, -0.238009 )
+scale = Vector2( 1.25772, 0.775289 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.211784, -1.08143 )
+rotation = -1.5708
+shape = SubResource( 15 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0.111359, -16.4726 )
+collision_layer = 16
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0.157761, -0.428254 )
+shape = SubResource( 16 )
+
+[node name="Location" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Location"]
+position = Vector2( 0.127579, -15.7888 )
+shape = SubResource( 17 )
+
+[node name="ObeliskStats" parent="." instance=ExtResource( 6 )]
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -0.21022, -9.5829 )
+texture = ExtResource( 2 )
+texture_scale = 0.3
+color = Color( 0.996078, 0.317647, 0.282353, 1 )
+energy = 0.6
+shadow_gradient_length = 3.0
+shadow_filter = 2
+shadow_filter_smooth = 50.0
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health2" from="ObeliskStats" to="." method="_on_SStats_no_health2"]
+
+[editable path="Hurtbox"]

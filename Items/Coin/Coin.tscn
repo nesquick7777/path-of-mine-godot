@@ -1,0 +1,114 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Items/Coin/Coin.gd" type="Script" id=1]
+[ext_resource path="res://Items/Coin/Coin.png" type="Texture" id=2]
+[ext_resource path="res://Items/Coin/CoinPickUp.wav" type="AudioStream" id=3]
+[ext_resource path="res://Items/Coin/CoinDropped.wav" type="AudioStream" id=4]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/SmallShadow.png-257a0697d771b59e35bffcad86330c40.stex"
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 8, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 24, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 40, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 56, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 72, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 80, 0, 8, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 88, 0, 8, 16 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "Drop",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 2.0
+
+[sub_resource type="CapsuleShape2D" id=16]
+radius = 3.03583
+height = 2.33043
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 131072
+collision_mask = 0
+mode = 2
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0.0175361, 1.03508 )
+scale = Vector2( 0.6456, 0.412308 )
+texture = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.0589924, -7.01147 )
+frames = SubResource( 14 )
+animation = "Animate"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 131072
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.0354643, -2.09028 )
+shape = SubResource( 16 )
+
+[node name="CoinPickUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="CoinDropped" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+attenuation = 1.27456
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

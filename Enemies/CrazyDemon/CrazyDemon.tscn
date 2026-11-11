@@ -1,0 +1,141 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Enemies/CrazyDemon/CrazyDemon.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/CrazyDemon/CrazyDemon.gd" type="Script" id=2]
+[ext_resource path="res://Effects/ShadowAndLightSprites/MediumShadow.png" type="Texture" id=3]
+[ext_resource path="res://Effects/ShadowAndLightSprites/light.png" type="Texture" id=4]
+[ext_resource path="res://Overlap/Hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/CrazyDemon/CrazyDemonGrowling.wav" type="AudioStream" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hit"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 3.12404
+height = 5.73861
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 7.41079
+height = 2.298
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 9.55436
+height = 6.05957
+
+[node name="CrazyDemon" type="KinematicBody2D"]
+collision_layer = 8192
+collision_mask = 8259
+collision/safe_margin = 2.495
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Run = SubResource( 3 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0.0340615, -0.178625 )
+scale = Vector2( 1.28536, 0.783861 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -16.5362 )
+texture = ExtResource( 1 )
+hframes = 9
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0.33371, -13.6821 )
+texture = ExtResource( 4 )
+texture_scale = 0.2
+color = Color( 1, 0, 0, 1 )
+energy = 0.6
+shadow_enabled = true
+shadow_gradient_length = 3.0
+shadow_filter = 2
+shadow_filter_smooth = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.211509, -1.78477 )
+rotation = -1.5708
+shape = SubResource( 4 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 5 )]
+position = Vector2( 37.3883, 5.87241 )
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -37.4251, -16.119 )
+shape = SubResource( 5 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 6 )]
+position = Vector2( -0.0468216, 0.80155 )
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -0.102505, -11.1076 )
+shape = SubResource( 6 )
+
+[node name="GrowlRun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
+attenuation = 0.594604
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+width = 2.0
+default_color = Color( 1, 0.4, 0.4, 1 )
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]
