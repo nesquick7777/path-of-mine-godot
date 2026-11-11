@@ -33,7 +33,7 @@ The thesis and presentation are available in the `docs/` folder. Copies are incl
 | Document | View |
 |---|---|
 | Final thesis | [PDF](docs/final-thesis.pdf) |
-| Game presentation | [PDF](docs/game-presentation.pptx) |
+| Game presentation | [PPTX](docs/game-presentation.pptx) |
 
 ## Notes
 
