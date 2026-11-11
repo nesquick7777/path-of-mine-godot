@@ -28,12 +28,12 @@ The player fights through increasingly difficult enemy waves while defending a b
 
 ## Project documents
 
-The thesis and presentation are available in the `docs/` folder. PDF copies are included for easy viewing on GitHub; the editable Word and PowerPoint files are included as well.
+The thesis and presentation are available in the `docs/` folder. Copies are included for easy viewing on GitHub.
 
 | Document | View |
 |---|---|
 | Final thesis | [PDF](docs/final-thesis.pdf) |
-| Game presentation | [PDF](docs/game-presentation.pdf) |
+| Game presentation | [PDF](docs/game-presentation.pptx) |
 
 ## Notes
 
